@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1731877119 source:c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_3x3.c
+	<stdio.h>
+	<stdlib.h>
+	"easy_bot.h"
+
+1731875544 source:c:\users\tflio\documents\tic_tac_toe_game\main.c
+	<stdio.h>
+	<conio.h>
+	<windows.h>
+	"tic_tac_toe_3x3.h"
+	"player.h"
+
+1731851595 c:\users\tflio\documents\tic_tac_toe_game\single_game.h
+
+1731855828 source:c:\users\tflio\documents\tic_tac_toe_game\single_game.c
+	<stdio.h>
+	<stdlib.h>
+	"tic_tac_toe_3x3.h"
+
+1731877119 c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_3x3.h
+
+1731867353 source:c:\users\tflio\documents\tic_tac_toe_game\player.c
+
+1731867474 c:\users\tflio\documents\tic_tac_toe_game\player.h
+
+1731876882 source:c:\users\tflio\documents\tic_tac_toe_game\easy_bot.c
+	<stdlib.h>
+	<time.h>
+
+1731876882 c:\users\tflio\documents\tic_tac_toe_game\easy_bot.h
+
