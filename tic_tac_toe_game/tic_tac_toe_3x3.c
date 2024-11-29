@@ -1,7 +1,8 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "easy_bot.h"
+#include "hard_bot.h"
+#include "player.h"
 
 /*
  Tic Tac Toe 3X3 game
@@ -40,11 +41,11 @@ int win()
         return -1;
 }
 
-void game() // Function to draw the player's game board along with their input
+void game(char *player1, char *player2) // Function to draw the player's game board along with their input
 {
     printf("\033[2J\033[H"); // Clear screen and reset cursor
     printf("\n\n\tTic Tac Toe\n\n");
-    printf("Player 1 (X)  -  Player 2 (O)\n\n");
+    printf("%s (X)  -  %s (O)\n\n", player1, player2);
     printf("\n");
 
 
@@ -61,23 +62,24 @@ void game() // Function to draw the player's game board along with their input
 }
 
 // run game with two players
-int start_game_3x3(){
-    start_game_3x3_bot(-1);
+int start_game_3x3(char *player1, char *player2){
+    return start_game_3x3_bot(-1, player1, player2);
 }
 
 // run game with bot
-int start_game_3x3_bot(int bot_level)
+int start_game_3x3_bot(int bot_level, char *player1, char *player2)
 {
     int player = 1, i, ch;
     char m;
+    int winner;
 
     do
     {
-        game();
+        game(player1, player2);
         player = (player % 2) ? 1 : 2;
         if(bot_level == -1){
 
-            printf("Player %d, enter a number: ", player);
+            printf("%s, enter a number: ", (player == 1)? player1: player2);
             scanf("%d", &ch);
         }else if(bot_level == 0){
             if (player == 1) {
@@ -88,7 +90,17 @@ int start_game_3x3_bot(int bot_level)
                 // Call bot_move to get the bot's move
                 ch = bot_move(num);
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
-        }
+            }
+        }else if(bot_level == 2){
+            if (player == 1) {
+                // Human player input
+                printf("Player %d, enter a number: ", player);
+                scanf("%d", &ch);
+            } else {
+                // Call bot_move to get the bot's move
+                ch = move_hard_bot(num, 'X');
+                printf("Bot (Player %d) chooses: %d\n", player, ch);
+            }
         }
         m = (player == 1) ? 'X' : 'O';
 
@@ -122,18 +134,22 @@ int start_game_3x3_bot(int bot_level)
     }
     while (i == -1);
 
-    game();
+    game(player1, player2);
     if (i == 1){
-        printf("==> Player %d wins!\n", --player);
+        printf("==> %s wins!\n",(--player == 1)? player1: player2);
+        // loading list of players
+        Player players_temp[100];
+        winner = --player;
     }
     else{
         printf("==> Game draw\n");
+        winner = -1;
     }
 
     getchar(); // Wait for user input before exiting
     clear_num_array();
-
-    return 0;
+    // return id of winner player o if player 1, 1 - if player 2
+    return winner;
 }
 
 int clear_num_array(){
