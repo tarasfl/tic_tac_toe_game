@@ -62,7 +62,8 @@ void game(char *player1, char *player2) // Function to draw the player's game bo
 }
 
 // run game with two players
-int start_game_3x3(char *player1, char *player2){
+int start_game_3x3(char *player1, char *player2)
+{
     return start_game_3x3_bot(-1, player1, player2);
 }
 
@@ -77,26 +78,37 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
     {
         game(player1, player2);
         player = (player % 2) ? 1 : 2;
-        if(bot_level == -1){
+        if(bot_level == -1)
+        {
 
             printf("%s, enter a number: ", (player == 1)? player1: player2);
             scanf("%d", &ch);
-        }else if(bot_level == 0){
-            if (player == 1) {
+        }
+        else if(bot_level == 0)
+        {
+            if (player == 1)
+            {
                 // Human player input
                 printf("Player %d, enter a number: ", player);
                 scanf("%d", &ch);
-            } else {
+            }
+            else
+            {
                 // Call bot_move to get the bot's move
                 ch = bot_move(num);
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
-        }else if(bot_level == 2){
-            if (player == 1) {
+        }
+        else if(bot_level == 2)
+        {
+            if (player == 1)
+            {
                 // Human player input
                 printf("Player %d, enter a number: ", player);
                 scanf("%d", &ch);
-            } else {
+            }
+            else
+            {
                 // Call bot_move to get the bot's move
                 ch = move_hard_bot(num, 'X');
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
@@ -135,13 +147,23 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
     while (i == -1);
 
     game(player1, player2);
-    if (i == 1){
-        printf("==> %s wins!\n",(--player == 1)? player1: player2);
-        // loading list of players
-        Player players_temp[100];
-        winner = --player;
+    if (i == 1)
+    {
+        // return game result if two players
+        if(bot_level == -1)
+        {
+            printf("==> %s wins!\n",(--player == 1)? player1: player2);
+            // loading list of players
+            winner = --player;
+        }
+        //return if playing with computer
+        else{
+            winner = (--player==1)? 0: -1;
+            printf("==> %s wins!\n",(winner == 0)? player1: "Computer");
+        }
     }
-    else{
+    else
+    {
         printf("==> Game draw\n");
         winner = -1;
     }
@@ -152,8 +174,10 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
     return winner;
 }
 
-int clear_num_array(){
-    for( int i =0; i<10; i++){
+int clear_num_array()
+{
+    for( int i =0; i<10; i++)
+    {
         num[i] = i + '0';
     }
     return 1;

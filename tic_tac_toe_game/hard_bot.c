@@ -138,42 +138,56 @@ int minimax(char board[3][3], int depth, int isMax, char opponent_symb) {
 
 // Function to find the best move for the player
 int findBestMove(char board[3][3], int* bestRow, int* bestCol, char opponent_symb) {
-    int bestVal = -1000;
-    int id;
-    char comp_symb = (opponent_symb=='X') ? 'O': 'X';
+    int bestVal = -1000; // Initialize the best value
+    int id = -1;
+    char comp_symb = (opponent_symb == 'X') ? 'O' : 'X';
     *bestRow = -1;
     *bestCol = -1;
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
+            // Check if the current cell is available
             if (board[i][j] != 'X' && board[i][j] != 'O') {
+                // Backup the original value
+                char backup = board[i][j];
+
+                // Make the move
                 board[i][j] = comp_symb;
 
+                // Evaluate the move
                 int moveVal = minimax(board, 0, 0, opponent_symb);
-                 id = (3* i) + j +1;
-                board[i][j] = (id + '0'); // Undo move
 
+                // Undo the move
+                board[i][j] = backup;
+
+                // Update the best value if the move is better
                 if (moveVal > bestVal) {
                     *bestRow = i;
                     *bestCol = j;
-                    id = (3* i) + j +1;
+                    id = (3 * i) + j + 1; // Convert to 1D index
                     bestVal = moveVal;
-                    return id;
                 }
             }
         }
     }
 
-    return id;
+    return id; // Return the best move index
 }
 
-int move_hard_bot(char num[10], char opponent_symb){
+int move_hard_bot(char num[10], char opponent_symb) {
     int bestRow, bestCol;
+
+    // Translate the 1D board array to a 2D board
     translate_to_board(board, num);
+
+    // Get the best move
     int move = findBestMove(board, &bestRow, &bestCol, opponent_symb);
-    printf("id: %d", move);
-    //int move  = (3* bestRow) + bestCol +1;
+
+    // Translate back to 1D
+    translate_to_one_array(num, board);
+
     return move;
 }
+
 
 

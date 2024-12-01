@@ -69,44 +69,70 @@ void game_4x4(char *player1, char *player2) // Function to draw the player's gam
 }
 
 // run game with two players
-int start_game_4x4(char *player1, char *player2){
+int start_game_4x4(char *player1, char *player2)
+{
     return start_game_4x4_bot(-1, player1, player2);
 }
 
 // run game with bot
 int start_game_4x4_bot(int bot_level, char *player1, char *player2)
 {
-    int player = 1, i, winner;
-    char m, ch;
+    int player = 1, i, winner, ch;
+    char m;
     char input_buffer[10];  // For handling the input as a string
     do
     {
         game_4x4(player1, player2);
         player = (player % 2) ? 1 : 2;
-        if(bot_level == -1){
+        if (bot_level == -1)
+        {
+            printf("%s, enter a number: ", (player == 1) ? player1 : player2);
 
-            printf("%s, enter a number: ", (player == 1)? player1: player2);
-             // Read a single character
-            fgets(input_buffer, sizeof(input_buffer), stdin);  // Use fgets to avoid leftover '\n' from previous inputs
-
-            // Convert input to integer (if valid)
-            ch = input_buffer[0];  // Convert char to int (e.g., '1' -> 1);
-        }else if(bot_level == 0){
-            if (player == 1) {
+            // Read the input and trim any extra newline
+            fgets(input_buffer, sizeof(input_buffer), stdin);
+            if (input_buffer[0] != '\n')
+            {
+                ch = input_buffer[0]; // Get the first character
+            }
+            else
+            {
+                ch = '\0'; // Invalid input
+            }
+        }
+        else if(bot_level == 0)
+        {
+            if (player == 1)
+            {
                 // Human player input
                 printf("Player %d, enter a number: ", player);
-                scanf("%d", &ch);
+                fgets(input_buffer, sizeof(input_buffer), stdin);
+                if (input_buffer[0] != '\n')
+                {
+                    ch = input_buffer[0]; // Get the first character
+                }
+                else
+                {
+                    ch = '\0'; // Invalid input
+                }
 
-            } else {
+            }
+            else
+            {
                 // Call bot_move to get the bot's move
+                ch = bot_move_4x4(num_4x4);
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
-        }else if(bot_level == 2){
-            if (player == 1) {
+        }
+        else if(bot_level == 2)
+        {
+            if (player == 1)
+            {
                 // Human player input
                 printf("Player %d, enter a number: ", player);
                 scanf("%d", &ch);
-            } else {
+            }
+            else
+            {
                 // Call bot_move to get the bot's move
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
@@ -157,11 +183,13 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
     while (i == -1);
 
     game_4x4(player1, player2);
-    if (i == 1){
+    if (i == 1)
+    {
         printf("==> %s wins!\n",(--player == 1)? player1: player2);
         winner = --player;
     }
-    else{
+    else
+    {
         printf("==> Game draw\n");
         winner == -1;
     }
@@ -172,9 +200,15 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
     return winner;
 }
 
-int clear_num_array_4x4(){
-    for( int i =0; i<17; i++){
+int clear_num_array_4x4()
+{
+    for( int i =0; i<10; i++)
+    {
         num_4x4[i] = i + '0';
+    }
+    for( int i = 10; i<17; i++)
+    {
+        num_4x4[i] = i + 55;
     }
     return 1;
 }
