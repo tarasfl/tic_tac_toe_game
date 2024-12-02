@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "easy_bot.h"
 
 
 char board[4][4];
@@ -190,4 +191,28 @@ char move_hard_bot_4x4(char num[17], char opponent_symb) {
 
     int move = (4 * bestRow) + bestCol + 1;
     return num[move];
+}
+
+char move_medium_bot_4x4(char num[17], char opponent_symb){
+    translate_to_board_4x4(board, num);
+     for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            // Check if the current cell is available
+            if (board[i][j] != 'X' && board[i][j] != 'O') {
+                char backup = board[i][j];
+
+                // Make the move
+                board[i][j] = opponent_symb;
+                int value = evaluate_4x4(board, opponent_symb);
+                if(value == -10){
+                    int move = (4 * i) + j + 1;
+                    return num[move];
+                }
+                // Undo the move
+                board[i][j] = backup;
+            }
+        }
+     }
+        char move = bot_move_4x4(num);
+        return move;
 }

@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "easy_bot.h"
 #define size 3
 
 char board[size][size];
@@ -150,8 +150,7 @@ int findBestMove(char board[size][size], int* bestRow, int* bestCol, char oppone
                 char backup = board[i][j];
 
                 // Make the move
-                board[i][j] = (opponent_symb == 'X') ? 'O' : 'X'; // Assume the AI is playing opposite of opponent
-
+                board[i][j] = (opponent_symb == 'X') ? 'O' : 'X';
                 // Evaluate the move
                 int moveVal = minimax(board, 0, 0, opponent_symb);
 
@@ -185,5 +184,28 @@ int move_hard_bot(char num[size*size+1], char opponent_symb) {
     return move;
 }
 
+int move_medium_bot(char num[10], char opponent_symb){
+    translate_to_board(board, num);
+     for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            // Check if the current cell is available
+            if (board[i][j] != 'X' && board[i][j] != 'O') {
+                char backup = board[i][j];
+
+                // Make the move
+                board[i][j] = opponent_symb;
+                int value = evaluate(board, opponent_symb);
+                if(value == -10){
+                    int move = (3 * i) + j + 1;
+                    return move;
+                }
+                // Undo the move
+                board[i][j] = backup;
+            }
+        }
+     }
+        int move = bot_move(num);
+        return move;
+}
 
 

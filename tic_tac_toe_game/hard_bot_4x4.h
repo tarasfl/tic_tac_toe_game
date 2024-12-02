@@ -3,6 +3,7 @@
 
 // Function prototype for the bot's move
 char move_hard_bot_4x4(char num[17], char opponent_symb);
+int move_medium_bot_4x4(char num[17], char opponent_symb);
 
 #endif // BOT_H
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1733060506 source:c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_3x3.c
+1733155014 source:c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_3x3.c
 	<stdio.h>
 	<stdlib.h>
 	"easy_bot.h"
@@ -38,23 +38,25 @@
 
 1731877476 source:c:\users\tflio\documents\tic_tac_toe_game\medium_bot.c
 
-1733076011 c:\users\tflio\documents\tic_tac_toe_game\hard_bot.h
+1733155014 c:\users\tflio\documents\tic_tac_toe_game\hard_bot.h
 
-1733076727 source:c:\users\tflio\documents\tic_tac_toe_game\hard_bot.c
+1733155642 source:c:\users\tflio\documents\tic_tac_toe_game\hard_bot.c
 	<stdio.h>
+	"easy_bot.h"
 
 1732830019 c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_4x4.h
 
-1733076793 source:c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_4x4.c
+1733155792 source:c:\users\tflio\documents\tic_tac_toe_game\tic_tac_toe_4x4.c
 	<stdio.h>
 	<stdlib.h>
 	"hard_bot_4x4.h"
 
-1733081011 source:c:\users\tflio\documents\tic_tac_toe_game\hard_bot_4x4.c
+1733155742 source:c:\users\tflio\documents\tic_tac_toe_game\hard_bot_4x4.c
 	<stdio.h>
+	"easy_bot.h"
 
 1733074845 source:c:\users\tflio\documents\tic_tac_toe_game\minimax.c
 	<stdio.h>
 
-1733076755 c:\users\tflio\documents\tic_tac_toe_game\hard_bot_4x4.h
+1733155792 c:\users\tflio\documents\tic_tac_toe_game\hard_bot_4x4.h
 
