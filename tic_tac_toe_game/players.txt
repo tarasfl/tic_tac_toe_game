@@ -1,2 +1,2 @@
-Petro 0 0
-Ivan 0 0
+Petro 6 2
+Ivan 2 5

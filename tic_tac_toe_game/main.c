@@ -423,6 +423,7 @@ void choose_player(ScreenState *current_screen, int *play_with_computer, Player 
 
 void play_game(int *play_with_computer, int *typeof_board, int *tournament_state, int *computer_level,  Player players[],  int *playerCount, char *player1, char *player2)
 {
+     *playerCount = loadPlayerData("players.txt", players, 100);
     if(*tournament_state == 0)
     {
         if(!*play_with_computer)
@@ -449,6 +450,8 @@ void play_game(int *play_with_computer, int *typeof_board, int *tournament_state
         else if(*play_with_computer)
         {
             int winner;
+            printf("Board: %d Bot Level: %d", *typeof_board, *computer_level);
+            _getch();
             if(!*typeof_board)
                 winner = start_game_3x3_bot(*computer_level, player1, player2);
             else if(*typeof_board)

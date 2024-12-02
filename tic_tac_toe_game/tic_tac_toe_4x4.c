@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "hard_bot_4x4.h"
 
 /*
  Tic Tac Toe 3X3 game
@@ -129,11 +130,21 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
             {
                 // Human player input
                 printf("Player %d, enter a number: ", player);
-                scanf("%d", &ch);
+                fgets(input_buffer, sizeof(input_buffer), stdin);
+                if (input_buffer[0] != '\n')
+                {
+                    ch = input_buffer[0]; // Get the first character
+                }
+                else
+                {
+                    ch = '\0'; // Invalid input
+                }
+
             }
             else
             {
                 // Call bot_move to get the bot's move
+                ch = move_hard_bot_4x4(num_4x4, 'X');
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
         }
