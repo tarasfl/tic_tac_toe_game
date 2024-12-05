@@ -3,7 +3,7 @@
 #include "hard_bot_4x4.h"
 
 /*
- Tic Tac Toe 3X3 game
+ Tic Tac Toe 4x4 game
 */
 
 char num_4x4[17] = {'o', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G'};
@@ -85,6 +85,7 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
     {
         game_4x4(player1, player2);
         player = (player % 2) ? 1 : 2;
+        // play with another player
         if (bot_level == -1)
         {
             printf("%s, enter a number: ", (player == 1) ? player1 : player2);
@@ -100,6 +101,7 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
                 ch = '\0'; // Invalid input
             }
         }
+        // play with easy bot
         else if(bot_level == 0)
         {
             if (player == 1)
@@ -124,6 +126,7 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
         }
+        // play with medium bot
         else if(bot_level == 1)
         {
             if (player == 1)
@@ -148,6 +151,7 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
         }
+        // play with hard bot
         else if(bot_level == 2)
         {
             if (player == 1)
@@ -235,6 +239,7 @@ int start_game_4x4_bot(int bot_level, char *player1, char *player2)
     return winner;
 }
 
+// clear num array after game for new game
 int clear_num_array_4x4()
 {
     for( int i =0; i<10; i++)

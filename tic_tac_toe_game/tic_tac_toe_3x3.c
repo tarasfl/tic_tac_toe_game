@@ -78,12 +78,14 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
     {
         game(player1, player2);
         player = (player % 2) ? 1 : 2;
+        // play with another player
         if(bot_level == -1)
         {
 
             printf("%s, enter a number: ", (player == 1)? player1: player2);
             scanf("%d", &ch);
         }
+        // play with easy bot
         else if(bot_level == 0)
         {
             if (player == 1)
@@ -99,6 +101,7 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
         }
+        // play with medium bot
         else if(bot_level == 1)
         {
             if (player == 1)
@@ -114,6 +117,7 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
                 printf("Bot (Player %d) chooses: %d\n", player, ch);
             }
         }
+        // play with hard bot
         else if(bot_level == 2)
         {
             if (player == 1)
@@ -154,7 +158,6 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
             printf("Invalid move ");
             player--;
             getchar(); // To consume the newline character
-            getchar(); // Wait for user input
         }
         i = win();
         player++;
@@ -189,6 +192,7 @@ int start_game_3x3_bot(int bot_level, char *player1, char *player2)
     return winner;
 }
 
+// clear num array for new game
 int clear_num_array()
 {
     for( int i =0; i<10; i++)

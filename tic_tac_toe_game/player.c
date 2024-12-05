@@ -74,14 +74,4 @@ int findPlayerByName(Player *players, int count, const char *name) {
     return -1;  // Not found
 }
 
-// function for exclude chosen player
-int excludePlayerByName(Player players[], int count, const char *excludeName, Player result[]) {
-    int newCount = 0;
-    for (int i = 0; i < count; i++) {
-        if (strcmp(players[i].name, excludeName) != 0) {  // Compare names
-            result[newCount++] = players[i];  // Copy player to the result array
-        }
-    }
-    return newCount;  // Return the new size of the result array
-}
 

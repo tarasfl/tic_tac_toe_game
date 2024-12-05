@@ -4,14 +4,17 @@
 
 char board[4][4];
 
+// get max value between two values
 int max_4x4(int a, int b) {
     return (a > b) ? a : b;
 }
 
+// get min value between two values
 int min_4x4(int a, int b) {
     return (a < b) ? a : b;
 }
 
+// translate one dimensional array to two dimensional array for minimax
 void translate_to_board_4x4(char board[4][4], char num[17]) {
     for (int i = 0; i < 16; i++) {
         int row = i / 4;
@@ -20,6 +23,7 @@ void translate_to_board_4x4(char board[4][4], char num[17]) {
     }
 }
 
+// translate two dimensional array to one dimensional array
 void translate_to_one_array_4x4(char num[17], char board[4][4]) {
     for (int i = 0; i < 17; i++) {
         int row = i / 4;
@@ -28,6 +32,7 @@ void translate_to_one_array_4x4(char num[17], char board[4][4]) {
     }
 }
 
+// checks is most left node is available
 int isMovesLeft_4x4(char board[4][4]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -180,6 +185,7 @@ int findBestMove_4x4(char board[4][4], int* bestRow, int* bestCol, char opponent
 }
 
 
+// function for calling hard bot for 4x4 gets char with best move
 char move_hard_bot_4x4(char num[17], char opponent_symb) {
     int bestRow, bestCol;
 
@@ -193,6 +199,7 @@ char move_hard_bot_4x4(char num[17], char opponent_symb) {
     return num[move];
 }
 
+// function for medium 4x4 bot gets char move to prevent opponents victory
 char move_medium_bot_4x4(char num[17], char opponent_symb){
     translate_to_board_4x4(board, num);
      for (int i = 0; i < 4; i++) {
@@ -203,7 +210,9 @@ char move_medium_bot_4x4(char num[17], char opponent_symb){
 
                 // Make the move
                 board[i][j] = opponent_symb;
+                // checks if the mpve is possible victory for oponent
                 int value = evaluate_4x4(board, opponent_symb);
+                // if mpove is victory for opponent return move to prevent victory
                 if(value == -10){
                     int move = (4 * i) + j + 1;
                     return num[move];
@@ -213,6 +222,7 @@ char move_medium_bot_4x4(char num[17], char opponent_symb){
             }
         }
      }
+     // if there is no wining move for opponent to prevent return random move
         char move = bot_move_4x4(num);
         return move;
 }

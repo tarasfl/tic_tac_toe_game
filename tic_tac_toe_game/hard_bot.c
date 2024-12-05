@@ -4,14 +4,17 @@
 
 char board[size][size];
 
+// function for max value between two values
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
 
+// function for min value between two values
 int min(int a, int b) {
     return (a < b) ? a : b;
 }
 
+// translate one dimensional array to two dimensional array
 void translate_to_board(char board[size][size], char num[size * size + 1]) {
     for (int i = 0; i < size * size; i++) {
         int row = i / size;
@@ -20,6 +23,7 @@ void translate_to_board(char board[size][size], char num[size * size + 1]) {
     }
 }
 
+// translate two dimensional array to one dimensional array
 void translate_to_one_array(char num[size * size + 1], char board[size][size]) {
     for (int i = 0; i < size * size; i++) {
         int row = i / size;
@@ -28,6 +32,7 @@ void translate_to_one_array(char num[size * size + 1], char board[size][size]) {
     }
 }
 
+// function to check most left node is available
 int isMovesLeft(char board[size][size]) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -171,6 +176,7 @@ int findBestMove(char board[size][size], int* bestRow, int* bestCol, char oppone
 }
 
 
+// function for calling hard bot 3x3 and gets best move as digit number of array index where move to
 int move_hard_bot(char num[size*size+1], char opponent_symb) {
     int bestRow, bestCol;
 
@@ -194,7 +200,9 @@ int move_medium_bot(char num[10], char opponent_symb){
 
                 // Make the move
                 board[i][j] = opponent_symb;
+                // evaluate is move is possible win
                 int value = evaluate(board, opponent_symb);
+                // if move is a possible win return move to prevent win for oponent
                 if(value == -10){
                     int move = (3 * i) + j + 1;
                     return move;
@@ -204,6 +212,7 @@ int move_medium_bot(char num[10], char opponent_symb){
             }
         }
      }
+     // if there is no wining move for opponent to prevent return random move
         int move = bot_move(num);
         return move;
 }

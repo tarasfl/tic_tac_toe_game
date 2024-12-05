@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Function for the bot's move
+// Function for the easy 3x3 bot's random move
 int bot_move(char board[]) {
     srand(time(NULL)); // Seed the random number generator
 
@@ -12,6 +12,7 @@ int bot_move(char board[]) {
 
     return move; // Return the bot's move
 }
+// Function for the easy 4x4 bot's random move
 char bot_move_4x4(char board[]) {
     srand(time(NULL)); // Seed the random number generator
 

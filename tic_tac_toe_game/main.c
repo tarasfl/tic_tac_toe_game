@@ -93,7 +93,7 @@ int main()
 
 void draw_menu(const char *options[], int num_options, int selected_option)
 {
-    //printf("\033[2J\033[H"); // Clear screen and reset cursor
+    // clear terminal for new screen
     system("cls");
     printf("\t=== Menu ===\n\n");
     for (int i = 0; i < num_options; i++)
@@ -144,17 +144,21 @@ void main_menu(ScreenState *current_screen, int *play_with_computer)
         {
             switch (selected_option)
             {
+            // play with another player
             case 0:
                 *current_screen = SCREEN_CHOOSE_BOARD;
                 *play_with_computer = 0;
                 return;
+            // play with computer
             case 1:
                 *current_screen = SCREEN_CHOOSE_BOARD;
                 *play_with_computer = 1;
                 return;
+            // see players and their results
             case 2:
                 *current_screen = SCREEN_PLAYERS_AND_RESULTS;
                 return;
+            // exit game
             case 3:
                 *current_screen = SCREEN_EXIT;
                 return;
@@ -197,14 +201,17 @@ void choose_board(ScreenState *current_screen, int *typeof_board)
         {
             switch (selected_option)
             {
+            // play game 3x3
             case 0:
                 *current_screen = SCREEN_TOURNAMENT_SINGLE_GAME;
                 *typeof_board = 0;
                 return;
+            // play game 4x4
             case 1:
                 *current_screen = SCREEN_TOURNAMENT_SINGLE_GAME;
                 *typeof_board = 1;
                 return;
+            // return to main menu
             case 2:
                 *current_screen = SCREEN_MAIN_MENU;
                 return;
@@ -272,7 +279,7 @@ void tournament_single_game(ScreenState *current_screen, int *tournament_state, 
                     *current_screen = SCREEN_CHOOSE_PLAYER;
                 }
                 return;
-            // exit
+            // return to main menu
             case 2:
                 *current_screen = SCREEN_MAIN_MENU;
                 return;
@@ -330,7 +337,7 @@ void choose_computer(ScreenState *current_screen, int *computer_level)
                 *current_screen = SCREEN_CHOOSE_PLAYER;
                 *computer_level = 2;
                 return;
-            // exit
+            // return to main menu
             case 3:
                 *current_screen = SCREEN_MAIN_MENU;
                 return;
@@ -424,15 +431,19 @@ void choose_player(ScreenState *current_screen, int *play_with_computer, Player 
 void play_game(int *play_with_computer, int *typeof_board, int *tournament_state, int *computer_level,  Player players[],  int *playerCount, char *player1, char *player2)
 {
      *playerCount = loadPlayerData("players.txt", players, 100);
+     //play single game
     if(*tournament_state == 0)
     {
+        // play with another player
         if(!*play_with_computer)
         {
             // var for returning winner
             int winner;
             if(!*typeof_board)
+                // play game 3x3
                 winner = start_game_3x3(player1, player2);
             else if(*typeof_board)
+                // play game 4x4
                 winner = start_game_4x4(player1, player2);
             _getch();
             // write down data for players
@@ -447,14 +458,16 @@ void play_game(int *play_with_computer, int *typeof_board, int *tournament_state
                 printf("Game resulted in a draw.\n");
             }
         }
+        // play with computer
         else if(*play_with_computer)
         {
             int winner;
-            printf("Board: %d Bot Level: %d", *typeof_board, *computer_level);
             _getch();
             if(!*typeof_board)
+                // play game 3x3
                 winner = start_game_3x3_bot(*computer_level, player1, player2);
             else if(*typeof_board)
+                // play game 4x4
                 winner = start_game_4x4_bot(*computer_level, player1, player2);
             if(winner == 0)
             {
@@ -466,6 +479,7 @@ void play_game(int *play_with_computer, int *typeof_board, int *tournament_state
         player1[0] = '\0'; // Initialize player1 as empty
         player2[0] = '\0'; // Initialize player2 as empty
     }
+    // play tournament
     else
     {
         if(!*play_with_computer)
@@ -475,8 +489,10 @@ void play_game(int *play_with_computer, int *typeof_board, int *tournament_state
             {
                 // Play the game with the current player order
                 if(!*typeof_board)
+                    // play game 3x3
                     winner = start_game_3x3(player1, player2);
                 else if(*typeof_board)
+                    // play game 4x4
                     winner = start_game_4x4(player1, player2);
                 _getch();
 
@@ -583,9 +599,11 @@ void players_and_results(ScreenState *current_screen, Player players[], int *pla
         {
             switch (selected_option)
             {
+            // crate new player
             case 0:
                 *current_screen = SCREEN_CREATE_NEW_PLAYER;
-                return;;
+                return;
+            // return to main menu
             case 1:
                 *current_screen = SCREEN_MAIN_MENU;
                 return;
@@ -597,6 +615,7 @@ void players_and_results(ScreenState *current_screen, Player players[], int *pla
     return;
 }
 
+// function for creating and writing new player to static
 void create_new_player(ScreenState *current_screen, Player players[], int *playerCount)
 {
     char name[50];  // Define a fixed size for the name
