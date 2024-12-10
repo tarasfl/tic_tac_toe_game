@@ -1,3 +1,14 @@
+/*******************************************************************************
+* Title                 :   Tic Tac Toe board 4x4 game file
+* Filename              :   tic_tac_toe_4x4.c
+* Author                :   TMF
+* Origin Date           :   18/11/2024
+* Version               :   1.0.0
+* Compiler              :   GNU GCC Compiler
+* Target                :   i686-w64-mingw32
+* Notes                 :   None
+*******************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "hard_bot_4x4.h"
@@ -8,6 +19,11 @@
 
 char num_4x4[17] = {'o', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G'};
 
+// Function Prototypes
+int win_4x4();
+void game_4x4(char *player1, char *player2);
+int start_game_4x4(char *player1, char *player2);
+int clear_num_array_4x4();
 
 /*
     Function to return status 1 for game over with a success,

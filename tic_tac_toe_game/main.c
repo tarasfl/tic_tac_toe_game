@@ -1,3 +1,14 @@
+/*******************************************************************************
+* Title                 :   Main file
+* Filename              :   main.c
+* Author                :   TMF
+* Origin Date           :   18/11/2024
+* Version               :   1.0.0
+* Compiler              :   GNU GCC Compiler
+* Target                :   i686-w64-mingw32
+* Notes                 :   None
+*******************************************************************************/
+
 #include <stdio.h>
 #include <conio.h> // For _getch()
 #include <windows.h> // For system("cls")

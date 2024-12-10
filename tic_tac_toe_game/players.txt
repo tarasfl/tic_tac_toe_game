@@ -1,2 +1,3 @@
-Petro 8 2
-Ivan 2 5
+Petro 11 5
+Ivan 5 8
+Taras 0 0

@@ -1,3 +1,15 @@
+/*******************************************************************************
+* Title                 :   Tic Tac Toe board 3x3 game file
+* Filename              :   tic_tac_toe_3x3.c
+* Author                :   TMF
+* Origin Date           :   18/11/2024
+* Version               :   1.0.0
+* Compiler              :   GNU GCC Compiler
+* Target                :   i686-w64-mingw32
+* Notes                 :   None
+*******************************************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "easy_bot.h"
@@ -9,6 +21,13 @@
 */
 
 char num[10] = {'o','1','2','3','4','5','6','7','8','9'};
+
+// Function Prototypes
+int win();
+void game(char *player1, char *player2);
+int start_game_3x3(char *player1, char *player2);
+int start_game_3x3_bot(int bot_level, char *player1, char *player2);
+int clear_num_array();
 
 /*
     Function to return status 1 for game over with a success,

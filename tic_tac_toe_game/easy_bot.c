@@ -1,5 +1,20 @@
+/*******************************************************************************
+* Title                 :   Easy Bot file
+* Filename              :   easy_bot.c
+* Author                :   TMF
+* Origin Date           :   18/11/2024
+* Version               :   1.0.0
+* Compiler              :   GNU GCC Compiler
+* Target                :   i686-w64-mingw32
+* Notes                 :   Easy bots for 3x3 and 4x4 boards
+*******************************************************************************/
+
 #include <stdlib.h>
 #include <time.h>
+
+// Function Prototypes
+int bot_move(char board[]);
+char bot_move_4x4(char board[]);
 
 // Function for the easy 3x3 bot's random move
 int bot_move(char board[]) {

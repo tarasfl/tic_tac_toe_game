@@ -1,8 +1,31 @@
+/*******************************************************************************
+* Title                 :   Hard Bot for 3x3 board file
+* Filename              :   hard_bot.c
+* Author                :   TMF
+* Origin Date           :   18/11/2024
+* Version               :   1.0.0
+* Compiler              :   GNU GCC Compiler
+* Target                :   i686-w64-mingw32
+* Notes                 :   Hard and Medium bot for board 3x3
+*******************************************************************************/
+
 #include <stdio.h>
 #include "easy_bot.h"
 #define size 3
 
 char board[size][size];
+
+// Function Prototypes
+int max(int a, int b);
+int min(int a, int b);
+void translate_to_board(char board[size][size], char num[size * size + 1]);
+void translate_to_one_array(char num[size * size + 1], char board[size][size]);
+int isMovesLeft(char board[size][size]);
+int evaluate(char board[3][3], char opponent_symb);
+int minimax(char board[3][3], int depth, int isMax, char opponent_symb);
+int findBestMove(char board[size][size], int* bestRow, int* bestCol, char opponent_symb);
+int move_hard_bot(char num[size*size+1], char opponent_symb);
+int move_medium_bot(char num[10], char opponent_symb);
 
 // function for max value between two values
 int max(int a, int b) {

@@ -1,3 +1,14 @@
+/*******************************************************************************
+* Title                 :   Player managment file
+* Filename              :   player.c
+* Author                :   TMF
+* Origin Date           :   18/11/2024
+* Version               :   1.0.0
+* Compiler              :   GNU GCC Compiler
+* Target                :   i686-w64-mingw32
+* Notes                 :   None
+*******************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +20,11 @@ typedef struct {
     int losses;
 } Player;
 
+// Function Prototypes
+void savePlayerData(const char *filename, Player *players, int count);
+int loadPlayerData(const char *filename, Player *players, int maxPlayers);
+void updatePlayerStats(Player *players, int *count, const char *name, int wins, int losses);
+int findPlayerByName(Player *players, int count, const char *name);
 
 // write new list of players into file
 void savePlayerData(const char *filename, Player *players, int count) {
